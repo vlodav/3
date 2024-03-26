@@ -1,0 +1,49 @@
+#include <iostream> 
+#include <cmath> 
+
+using namespace std;
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    double a, xn, xk, dx;
+    cout << "введите a" << endl;
+    cin >> a;
+    cout << "введите xn" << endl;
+    cin >> xn;
+    cout << "введите xk" << endl;
+    cin >> xk;
+    cout << "введите dx" << endl;
+    cin >> dx;
+    double sum_t = 0;
+    double x = xn;
+    int i = 0;
+    double t_ = 1;
+    bool r = true;
+    while (x <= xk) {
+        double t = (pow((a * x), 1 / 3)) / (5 + cos(a) + exp(x));
+
+        if (i % 2 == 0) {
+            cout << "x = " << x << ", t = " << t << endl;
+        }
+        if (t > 0)
+        {
+            sum_t += t;
+        }
+        if (t < 0)
+        {
+            r = false;
+            t_ *= t;
+        }
+        x += dx;
+        i++;
+    }
+    cout << "Сумма положительных значений t: " << sum_t << endl;
+    if (r == true)
+    {
+        cout << "отрицательных значений t нету! "<< endl;
+    }
+    else
+        cout << "Произведение отрицательных значений t: " << t_ << endl;
+    cout << "количество значений t: " << i << endl;
+    return 0;
+}
