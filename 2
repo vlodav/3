@@ -1,0 +1,46 @@
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+using namespace std;
+int main()
+{
+    setlocale(LC_ALL, "ru");
+    double xn,x,sum,sumnew,razn,y,y1;
+    int i, n;
+    cout << "введите начала диапазона при условии(-1 < x <= 1): ";
+    cin >> xn;
+    cout << "введите цонец диапазона при условии(-1 < x <= 1): ";
+    double xk;
+    cin >> xk;
+    cout << "введите шаг: ";
+    double dx;
+    cin >> dx;
+    cout << "введите точность вычислений: ";
+    double epsilon;
+    cin >> epsilon;
+    cout << endl;
+    cout << "--------------------------------------" << endl;
+    cout <<"|" << setw(9) << left << "x" << "|" << setw(9) << left << "y" <<"|" << setw(6) << left << "n" <<"|" << setw(9) << left << "y1" << setw(8) << left << "|"<<endl;
+    cout << "--------------------------------------" << endl;
+    x = xn;
+    do
+    {
+        sum = 0;
+        razn = 1;
+        n = 0;
+        while (razn>epsilon)
+        {
+            sumnew = sum + (pow(-1, n) * pow(x, n + 1)) / (n + 1);
+            razn = fabs(sum - sumnew);
+            sum = sumnew;
+            n += 1;
+        }
+        y = sum;
+        y1 = log(x + 1);
+        cout << fixed << showpos <<"|" << setw(8) << left << x << "|" << setw(8) << left << y <<"|" << setw(6) << left << n <<"|" << setw(8) << left << y1 << setw(8) << left << "|"<<endl;
+        x += dx;
+
+    } while (x <= xk);
+    cout << "--------------------------------------" << endl;
+    return 0;
+}
